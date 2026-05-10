@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>warp.capture_launch &#8212; Warp 1.14.0.dev0</title>
+    <title>warp.config.enable_mathdx_solver &#8212; Warp 1.14.0.dev0</title>
   
   
   
@@ -49,7 +49,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=fd10adb8"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api_reference/_generated/warp.capture_launch';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_reference/_generated/warp.config.enable_mathdx_solver';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://nvidia.github.io/warp/versions.json';
@@ -62,8 +62,8 @@
 
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="warp.capture_load" href="warp.capture_load.html" />
-    <link rel="prev" title="warp.capture_if" href="warp.capture_if.html" />
+    <link rel="next" title="warp.config.enable_mempools_at_init" href="warp.config.enable_mempools_at_init.html" />
+    <link rel="prev" title="warp.config.enable_mathdx_gemm" href="warp.config.enable_mathdx_gemm.html" />
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -459,9 +459,9 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../warp.html" class="nav-link">warp</a></li>
+    <li class="breadcrumb-item"><a href="../warp_config.html" class="nav-link">warp.config</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">warp.capture_launch</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">warp.config.enable_mathdx_solver</span></li>
   </ul>
 </nav>
 </div>
@@ -474,7 +474,7 @@
         <div class="header-article-item">
 
 <div class="d-flex justify-content-end w-100">
-  <a href="../../_sources/api_reference/_generated/warp.capture_launch.rst.txt">
+  <a href="../../_sources/api_reference/_generated/warp.config.enable_mathdx_solver.rst.txt">
     <i class="fa-solid fa-file-code"></i> View page source
   </a>
 </div>
@@ -491,22 +491,20 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="warp-capture-launch">
-<h1>warp.capture_launch<a class="headerlink" href="#warp-capture-launch" title="Link to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="warp.capture_launch">
-<span class="sig-prename descclassname"><span class="pre">warp.</span></span><span class="sig-name descname"><span class="pre">capture_launch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NVIDIA/warp/blob/main/warp/_src/context.py#L9878-L9940"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warp.capture_launch" title="Link to this definition">#</a></dt>
-<dd><p>Launch a previously captured graph.</p>
-<p>For CUDA graphs, this launches via <code class="docutils literal notranslate"><span class="pre">cudaGraphLaunch()</span></code>.
-For CPU graphs, this replays recorded operations in a tight native C loop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> (<a class="reference internal" href="warp.Graph.html#warp.Graph" title="warp._src.context.Graph"><em>Graph</em></a>) – A <a class="reference internal" href="warp.Graph.html#warp.Graph" title="warp.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> as returned by <a class="reference internal" href="warp.capture_end.html#warp.capture_end" title="warp.capture_end"><code class="xref py py-func docutils literal notranslate"><span class="pre">capture_end()</span></code></a></p></li>
-<li><p><strong>stream</strong> (<a class="reference internal" href="warp.Stream.html#warp.Stream" title="warp._src.context.Stream"><em>Stream</em></a><em> | </em><em>None</em>) – A <a class="reference internal" href="warp.Stream.html#warp.Stream" title="warp.Stream"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stream</span></code></a> to launch the graph on (CUDA only)</p></li>
-</ul>
-</dd>
-</dl>
+  <section id="warp-config-enable-mathdx-solver">
+<h1>warp.config.enable_mathdx_solver<a class="headerlink" href="#warp-config-enable-mathdx-solver" title="Link to this heading">#</a></h1>
+<dl class="py data">
+<dt class="sig sig-object py" id="warp.config.enable_mathdx_solver">
+<span class="sig-prename descclassname"><span class="pre">warp.config.</span></span><span class="sig-name descname"><span class="pre">enable_mathdx_solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="warp.bool.html#warp.bool" title="warp.bool"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#warp.config.enable_mathdx_solver" title="Link to this definition">#</a></dt>
+<dd><p>Use libmathdx (cuSolverDx) for tile solver ops on GPU when available.</p>
+<p>Controls all cuSolverDx-backed ops: <a class="reference internal" href="../../language_reference/_generated/warp.tile_cholesky.html#warp._src.lang.tile_cholesky" title="warp._src.lang.tile_cholesky"><code class="xref py py-func docutils literal notranslate"><span class="pre">tile_cholesky</span></code></a>
+(and its adjoint), <a class="reference internal" href="../../language_reference/_generated/warp.tile_cholesky_solve.html#warp._src.lang.tile_cholesky_solve" title="warp._src.lang.tile_cholesky_solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">tile_cholesky_solve</span></code></a>,
+<a class="reference internal" href="../../language_reference/_generated/warp.tile_lower_solve.html#warp._src.lang.tile_lower_solve" title="warp._src.lang.tile_lower_solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">tile_lower_solve</span></code></a>, and
+<a class="reference internal" href="../../language_reference/_generated/warp.tile_upper_solve.html#warp._src.lang.tile_upper_solve" title="warp._src.lang.tile_upper_solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">tile_upper_solve</span></code></a>.</p>
+<p>When False, these ops fall back to cooperative shared-memory implementations
+that do not require libmathdx, at the cost of runtime performance.</p>
+<p>This setting can be overridden at the module level by setting the
+<code class="docutils literal notranslate"><span class="pre">&quot;enable_mathdx_solver&quot;</span></code> module option.</p>
 </dd></dl>
 
 </section>
@@ -522,20 +520,20 @@ For CPU graphs, this replays recorded operations in a tight native C loop.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="warp.capture_if.html"
+       href="warp.config.enable_mathdx_gemm.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">warp.capture_if</p>
+        <p class="prev-next-title">warp.config.enable_mathdx_gemm</p>
       </div>
     </a>
     <a class="right-next"
-       href="warp.capture_load.html"
+       href="warp.config.enable_mempools_at_init.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">warp.capture_load</p>
+        <p class="prev-next-title">warp.config.enable_mempools_at_init</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -560,7 +558,7 @@ For CPU graphs, this replays recorded operations in a tight native C loop.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warp.capture_launch"><code class="docutils literal notranslate"><span class="pre">capture_launch()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warp.config.enable_mathdx_solver"><code class="docutils literal notranslate"><span class="pre">enable_mathdx_solver</span></code></a></li>
 </ul>
   </nav></div>
 
@@ -568,7 +566,7 @@ For CPU graphs, this replays recorded operations in a tight native C loop.</p>
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/NVIDIA/warp/edit/main/docs/api_reference/_generated/warp.capture_launch.rst">
+    <a href="https://github.com/NVIDIA/warp/edit/main/docs/api_reference/_generated/warp.config.enable_mathdx_solver.rst">
       <i class="fa-solid fa-pencil"></i>
       
       

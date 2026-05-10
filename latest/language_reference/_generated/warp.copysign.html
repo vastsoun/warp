@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>warp.capture_launch &#8212; Warp 1.14.0.dev0</title>
+    <title>warp.copysign &#8212; Warp 1.14.0.dev0</title>
   
   
   
@@ -49,7 +49,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=fd10adb8"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api_reference/_generated/warp.capture_launch';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'language_reference/_generated/warp.copysign';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://nvidia.github.io/warp/versions.json';
@@ -62,8 +62,8 @@
 
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="warp.capture_load" href="warp.capture_load.html" />
-    <link rel="prev" title="warp.capture_if" href="warp.capture_if.html" />
+    <link rel="next" title="warp.cos" href="warp.cos.html" />
+    <link rel="prev" title="warp.clamp" href="warp.clamp.html" />
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -410,20 +410,20 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../warp.html">warp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_autograd.html">warp.autograd</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_config.html">warp.config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_fem.html">warp.fem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_jax_experimental.html">warp.jax_experimental</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_optim.html">warp.optim</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_render.html">warp.render</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_sparse.html">warp.sparse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_types.html">warp.types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../warp_utils.html">warp.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp.html">warp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_autograd.html">warp.autograd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_config.html">warp.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_fem.html">warp.fem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_jax_experimental.html">warp.jax_experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_optim.html">warp.optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_render.html">warp.render</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_sparse.html">warp.sparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_types.html">warp.types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_utils.html">warp.utils</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Language Reference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../language_reference/builtins.html">Built-Ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builtins.html">Built-Ins</a></li>
 </ul>
 </div>
 </nav></div>
@@ -459,9 +459,9 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../warp.html" class="nav-link">warp</a></li>
+    <li class="breadcrumb-item"><a href="../builtins.html" class="nav-link">Built-Ins</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">warp.capture_launch</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">warp.copysign</span></li>
   </ul>
 </nav>
 </div>
@@ -474,7 +474,7 @@
         <div class="header-article-item">
 
 <div class="d-flex justify-content-end w-100">
-  <a href="../../_sources/api_reference/_generated/warp.capture_launch.rst.txt">
+  <a href="../../_sources/language_reference/_generated/warp.copysign.rst.txt">
     <i class="fa-solid fa-file-code"></i> View page source
   </a>
 </div>
@@ -491,22 +491,35 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="warp-capture-launch">
-<h1>warp.capture_launch<a class="headerlink" href="#warp-capture-launch" title="Link to this heading">#</a></h1>
+  <section id="warp-copysign">
+<h1>warp.copysign<a class="headerlink" href="#warp-copysign" title="Link to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="warp.capture_launch">
-<span class="sig-prename descclassname"><span class="pre">warp.</span></span><span class="sig-name descname"><span class="pre">capture_launch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NVIDIA/warp/blob/main/warp/_src/context.py#L9878-L9940"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warp.capture_launch" title="Link to this definition">#</a></dt>
-<dd><p>Launch a previously captured graph.</p>
-<p>For CUDA graphs, this launches via <code class="docutils literal notranslate"><span class="pre">cudaGraphLaunch()</span></code>.
-For CPU graphs, this replays recorded operations in a tight native C loop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> (<a class="reference internal" href="warp.Graph.html#warp.Graph" title="warp._src.context.Graph"><em>Graph</em></a>) – A <a class="reference internal" href="warp.Graph.html#warp.Graph" title="warp.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> as returned by <a class="reference internal" href="warp.capture_end.html#warp.capture_end" title="warp.capture_end"><code class="xref py py-func docutils literal notranslate"><span class="pre">capture_end()</span></code></a></p></li>
-<li><p><strong>stream</strong> (<a class="reference internal" href="warp.Stream.html#warp.Stream" title="warp._src.context.Stream"><em>Stream</em></a><em> | </em><em>None</em>) – A <a class="reference internal" href="warp.Stream.html#warp.Stream" title="warp.Stream"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stream</span></code></a> to launch the graph on (CUDA only)</p></li>
+<dt class="sig sig-object py" id="warp._src.lang.copysign">
+<span class="sig-prename descclassname"><span class="pre">warp.</span></span><span class="sig-name descname"><span class="pre">copysign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Float</span></span></span><a class="headerlink" href="#warp._src.lang.copysign" title="Link to this definition">#</a></dt>
+<dd><table class="hlist"><tr><td><ul class="simple">
+<li><p>Kernel</p></li>
 </ul>
-</dd>
-</dl>
+</td><td><ul class="simple">
+<li><p>Differentiable</p></li>
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td></tr></table>
+<p>Return a value with the magnitude of <code class="docutils literal notranslate"><span class="pre">x</span></code> and the sign of <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">wp.copysign(3.0,</span> <span class="pre">-1.0)</span></code> returns <code class="docutils literal notranslate"><span class="pre">-3.0</span></code> and
+<code class="docutils literal notranslate"><span class="pre">wp.copysign(-3.0,</span> <span class="pre">1.0)</span></code> returns <code class="docutils literal notranslate"><span class="pre">3.0</span></code>. Useful for forcing a
+specific sign on a result whose signed-zero behavior is otherwise
+implementation-defined (e.g. <code class="docutils literal notranslate"><span class="pre">wp.min(-0.0,</span> <span class="pre">+0.0)</span></code>).</p>
 </dd></dl>
 
 </section>
@@ -522,20 +535,20 @@ For CPU graphs, this replays recorded operations in a tight native C loop.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="warp.capture_if.html"
+       href="warp.clamp.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">warp.capture_if</p>
+        <p class="prev-next-title">warp.clamp</p>
       </div>
     </a>
     <a class="right-next"
-       href="warp.capture_load.html"
+       href="warp.cos.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">warp.capture_load</p>
+        <p class="prev-next-title">warp.cos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -560,7 +573,7 @@ For CPU graphs, this replays recorded operations in a tight native C loop.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warp.capture_launch"><code class="docutils literal notranslate"><span class="pre">capture_launch()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warp._src.lang.copysign"><code class="docutils literal notranslate"><span class="pre">copysign()</span></code></a></li>
 </ul>
   </nav></div>
 
@@ -568,7 +581,7 @@ For CPU graphs, this replays recorded operations in a tight native C loop.</p>
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/NVIDIA/warp/edit/main/docs/api_reference/_generated/warp.capture_launch.rst">
+    <a href="https://github.com/NVIDIA/warp/edit/main/docs/language_reference/_generated/warp.copysign.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
