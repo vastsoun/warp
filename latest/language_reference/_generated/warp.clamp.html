@@ -414,7 +414,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_autograd.html">warp.autograd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_config.html">warp.config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_fem.html">warp.fem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_jax_experimental.html">warp.jax_experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_jax.html">warp.jax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_optim.html">warp.optim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_render.html">warp.render</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/warp_sparse.html">warp.sparse</a></li>
@@ -516,6 +516,9 @@
 </ul>
 </td></tr></table>
 <p>Clamp the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the range [low, high].</p>
+<p>Equivalent to <code class="docutils literal notranslate"><span class="pre">wp.min(wp.max(low,</span> <span class="pre">x),</span> <span class="pre">high)</span></code>. On float types this means
+NaN values of <code class="docutils literal notranslate"><span class="pre">x</span></code> produce <code class="docutils literal notranslate"><span class="pre">wp.min(low,</span> <span class="pre">high)</span></code> rather than propagating
+NaN.</p>
 </dd></dl>
 
 </section>

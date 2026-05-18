@@ -414,7 +414,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_autograd.html">warp.autograd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_config.html">warp.config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_fem.html">warp.fem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_jax_experimental.html">warp.jax_experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_jax.html">warp.jax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_optim.html">warp.optim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_render.html">warp.render</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api_reference/warp_sparse.html">warp.sparse</a></li>
@@ -496,6 +496,7 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">wp.tile_empty</span></code> to allocate a tile of uninitialized items (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1312">GH-1312</a>).</p></li>
 <li><p>Expose CUDA graph capture mode via <code class="docutils literal notranslate"><span class="pre">ScopedCapture</span></code> / <code class="docutils literal notranslate"><span class="pre">capture_begin()</span></code>
 (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1410">GH-1410</a>).</p></li>
 <li><p>Add pre-allocated functors for <code class="docutils literal notranslate"><span class="pre">warp.optim.linear</span></code> solvers. Passing <code class="docutils literal notranslate"><span class="pre">run=False</span></code> to <code class="docutils literal notranslate"><span class="pre">cg</span></code>, <code class="docutils literal notranslate"><span class="pre">cr</span></code>, <code class="docutils literal notranslate"><span class="pre">bicgstab</span></code>, or <code class="docutils literal notranslate"><span class="pre">gmres</span></code>
@@ -521,6 +522,20 @@ to route these ops through the fallback when libmathdx is available
 (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1402">GH-1402</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">wp.copysign(x,</span> <span class="pre">y)</span></code>: returns a value with the magnitude of <code class="docutils literal notranslate"><span class="pre">x</span></code> and the
 sign of <code class="docutils literal notranslate"><span class="pre">y</span></code>, matching C <code class="docutils literal notranslate"><span class="pre">copysign</span></code> (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1444">GH-1444</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">--use-dynamic-cuda</span></code> build option to link against shared CUDA libraries instead of embedding
+them statically; the corresponding shared libraries must be present at runtime
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1334">GH-1334</a>).</p></li>
+<li><p>Add pluggable logging infrastructure: implement the <code class="docutils literal notranslate"><span class="pre">wp.Logger</span></code> protocol and pass it to <code class="docutils literal notranslate"><span class="pre">wp.set_logger()</span></code>,
+or scope it temporarily with <code class="docutils literal notranslate"><span class="pre">wp.ScopedLogger</span></code>. <code class="docutils literal notranslate"><span class="pre">wp.config.log_level</span></code> controls the global verbosity threshold
+and can be scoped temporarily with <code class="docutils literal notranslate"><span class="pre">wp.ScopedLogLevel</span></code>; all Python-side diagnostic output now routes through
+the logger (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1315">GH-1315</a>,
+<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1434">GH-1434</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">wp.tile_fft()</span></code> and <code class="docutils literal notranslate"><span class="pre">wp.tile_ifft()</span></code> (and their adjoints) on CPU and on GPU builds
+without libmathdx. CPU supports power-of-two sizes and non-power-of-two sizes up to 4096
+elements; GPU requires power-of-two sizes divisible by <code class="docutils literal notranslate"><span class="pre">block_dim</span></code>. The new
+<code class="docutils literal notranslate"><span class="pre">enable_mathdx_fft</span></code> config flag and module option also selects the fallback on GPU builds
+with libmathdx, trading runtime performance for faster kernel compile times
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1396">GH-1396</a>).</p></li>
 </ul>
 </section>
 <section id="removed">
@@ -531,11 +546,26 @@ sign of <code class="docutils literal notranslate"><span class="pre">y</span></c
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">warp.fem</span></code>: Defer the scheduled removal of the deprecated <code class="docutils literal notranslate"><span class="pre">quadrature</span></code> and <code class="docutils literal notranslate"><span class="pre">domain</span></code> arguments of <code class="docutils literal notranslate"><span class="pre">interpolate()</span></code>,
 and the <code class="docutils literal notranslate"><span class="pre">space</span></code> argument of <code class="docutils literal notranslate"><span class="pre">make_space_restriction</span></code> and <code class="docutils literal notranslate"><span class="pre">make_space_partition</span></code>, to Warp 1.15.</p></li>
+<li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">warp.jax_experimental</span></code> in favor of the stable public <code class="docutils literal notranslate"><span class="pre">warp.jax</span></code> API. Migrate by updating
+import statements from <code class="docutils literal notranslate"><span class="pre">warp.jax_experimental</span></code> to <code class="docutils literal notranslate"><span class="pre">warp.jax</span></code>. No API changes are required.
+<code class="docutils literal notranslate"><span class="pre">warp.jax_experimental</span></code> will be removed in Warp 1.16.
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1370">GH-1370</a>)</p></li>
+<li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">warp.config.verbose</span></code> and <code class="docutils literal notranslate"><span class="pre">warp.config.quiet</span></code> in favor of <code class="docutils literal notranslate"><span class="pre">warp.config.log_level</span></code>. Reading or setting
+either flag continues to work during the deprecation window and now emits a one-time <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code>.
+<code class="docutils literal notranslate"><span class="pre">warp.config.verbose_warnings</span></code> is unaffected and continues to control whether warning output includes the source
+location (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1315">GH-1315</a>).</p></li>
+<li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">wp.HashGridQueryH</span></code> and <code class="docutils literal notranslate"><span class="pre">wp.HashGridQueryD</span></code>; use <code class="docutils literal notranslate"><span class="pre">wp.HashGridQuery</span></code> instead.
+The legacy aliases remain available during the deprecation period for compatibility
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1452">GH-1452</a>).</p></li>
 </ul>
 </section>
 <section id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Consolidate the documented <code class="docutils literal notranslate"><span class="pre">wp.HashGrid</span></code> query API around <code class="docutils literal notranslate"><span class="pre">wp.HashGridQuery</span></code>. Query
+objects returned by <code class="docutils literal notranslate"><span class="pre">wp.hash_grid_query()</span></code> now appear as <code class="docutils literal notranslate"><span class="pre">wp.HashGridQuery</span></code> in
+generated docs and stubs regardless of the grid coordinate precision
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1452">GH-1452</a>).</p></li>
 <li><p>Reduce overhead of converting <code class="docutils literal notranslate"><span class="pre">wp.float16</span></code> values to and from Python <code class="docutils literal notranslate"><span class="pre">float</span></code>. Building from source on Linux now
 requires <code class="docutils literal notranslate"><span class="pre">libpython3-dev</span></code> for the Python C headers (<code class="docutils literal notranslate"><span class="pre">Python.h</span></code>); the build checks for them up front and reports an
 actionable error when missing (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1339">GH-1339</a>).</p></li>
@@ -544,6 +574,13 @@ actionable error when missing (<a class="reference external" href="https://githu
 <li><p>Build the native library with <code class="docutils literal notranslate"><span class="pre">-Og</span> <span class="pre">-g</span></code> instead of <code class="docutils literal notranslate"><span class="pre">-O0</span> <span class="pre">-g</span> <span class="pre">-fkeep-inline-functions</span></code> on Linux/macOS debug builds.
 This enables debug-friendly optimizations, restores <code class="docutils literal notranslate"><span class="pre">-Wuninitialized</span></code> dataflow analysis, and avoids leaking
 unused inline function bodies from <code class="docutils literal notranslate"><span class="pre">&lt;Python.h&gt;</span></code> (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1414">GH-1414</a>).</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">wp.min</span></code>, <code class="docutils literal notranslate"><span class="pre">wp.max</span></code>, <code class="docutils literal notranslate"><span class="pre">wp.clamp</span></code>, <code class="docutils literal notranslate"><span class="pre">wp.atomic_min</span></code>, <code class="docutils literal notranslate"><span class="pre">wp.atomic_max</span></code> (and their vector / matrix overloads) on
+float arguments to use NaN-as-missing semantics matching C <code class="docutils literal notranslate"><span class="pre">fmin</span></code> / <code class="docutils literal notranslate"><span class="pre">fmax</span></code>: the operation returns the non-NaN
+operand when exactly one is NaN, and NaN only when both are NaN. Vector reductions and <code class="docutils literal notranslate"><span class="pre">argmin</span></code> / <code class="docutils literal notranslate"><span class="pre">argmax</span></code>
+skip NaN slots. Adjoint and atomic variants are updated consistently to route gradients to whichever operand
+the forward picked. Integer overloads are unchanged (no NaN to handle). Users who relied on the previous
+asymmetric <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span> <span class="pre">?</span> <span class="pre">a</span> <span class="pre">:</span> <span class="pre">b</span></code> form can write that ternary inline in their kernel
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1376">GH-1376</a>).</p></li>
 <li><p>The differentiated <code class="docutils literal notranslate"><span class="pre">tile_cholesky</span></code> GPU path on builds without libmathdx now uses the cooperative
 shared-memory adjoint instead of the prior thread-0 scalar adjoint with local scratch. Behaviour
 and accuracy are preserved, but the path now allocates two <code class="docutils literal notranslate"><span class="pre">__shared__</span> <span class="pre">T[n*n]</span></code> scratch buffers
@@ -575,6 +612,20 @@ propagate gradients instead of silently dropping them.
 (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1430">GH-1430</a>).</p></li>
 <li><p>Fix tile reassignment from register storage to shared storage after <code class="docutils literal notranslate"><span class="pre">wp.tile_matmul()</span></code>
 (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1439">GH-1439</a>).</p></li>
+<li><p>Fix memory leak with retained graph allocations (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1429">GH-1429</a>).</p></li>
+<li><p>Fix a data race in <code class="docutils literal notranslate"><span class="pre">wp.ScopedMemoryTracker.report()</span></code> that could corrupt the report when called
+concurrently from multiple threads (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1415">GH-1415</a>).</p></li>
+<li><p>Fix Warp warning emission overriding user warning filters, making deprecation warnings unsuppressible via
+<code class="docutils literal notranslate"><span class="pre">warnings.filterwarnings()</span></code> (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1315">GH-1315</a>).</p></li>
+<li><p>Fix retained Python module references when repeated <code class="docutils literal notranslate"><span class="pre">module=&quot;unique&quot;</span></code> kernel declarations reuse an existing unique
+module (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1462">GH-1462</a>).</p></li>
+<li><p>Stabilize <code class="docutils literal notranslate"><span class="pre">wp.closest_point_edge_edge()</span></code> at near-parallel configurations.
+Forward output is unchanged for well-conditioned inputs and is
+now well-defined (and gradient-stable) for near-parallel edges, where it
+could previously return geometrically valid but unstable barycentric
+weights (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1437">GH-1437</a>).</p></li>
+<li><p>Fix tile reassignment from shared storage to register storage
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1440">GH-1440</a>).</p></li>
 </ul>
 </section>
 <section id="documentation">
