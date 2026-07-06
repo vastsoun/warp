@@ -504,6 +504,10 @@ overhead and register pressure, which can speed up launch-bound kernels; it stil
 the block count can no longer be capped, so launching such a kernel with <code class="docutils literal notranslate"><span class="pre">max_blocks</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> raises an error pointing
 back at the grid-stride default. The default launch is unchanged
 (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1270">GH-1270</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">wp.cuda_profiler_start()</span></code>, <code class="docutils literal notranslate"><span class="pre">wp.cuda_profiler_stop()</span></code>, and the <code class="docutils literal notranslate"><span class="pre">wp.ScopedCudaProfiler</span></code> context manager to
+control CUDA profiler data collection from Python (equivalent to <code class="docutils literal notranslate"><span class="pre">cuProfilerStart</span></code>/<code class="docutils literal notranslate"><span class="pre">cuProfilerStop</span></code>), for use with an
+external profiler’s capture range. They accept an optional <code class="docutils literal notranslate"><span class="pre">device</span></code> argument and act on that device’s current CUDA
+context (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1596">GH-1596</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">wp.ref[T]</span></code> parameter annotation for <code class="docutils literal notranslate"><span class="pre">&#64;wp.func</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;wp.func_native</span></code>, enabling explicit pass-by-reference
 semantics for scalar, vector, matrix, quaternion, and struct types. Mutations to a <code class="docutils literal notranslate"><span class="pre">wp.ref[T]</span></code> parameter are visible
 in the caller’s storage without a return value. Add <code class="docutils literal notranslate"><span class="pre">wp.address_of(expr)</span> <span class="pre">-&gt;</span> <span class="pre">wp.uint64</span></code> for obtaining a raw pointer
@@ -706,6 +710,13 @@ pause/resume flows are preserved (<a class="reference external" href="https://gi
 capture, which APIC cannot record for replay (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1559">GH-1559</a>).</p></li>
 <li><p>Fix APIC graph capture for <code class="docutils literal notranslate"><span class="pre">warp.fem</span></code> workflows by making partition node counts graph-capture safe
 (<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1407">GH-1407</a>).</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">warp.optim.Adam.set_params()</span></code> re-zeroing the optimizer moment buffers on every call for <code class="docutils literal notranslate"><span class="pre">fp16</span></code>
+parameters, which silently discarded accumulated state. The reuse check now compares against the
+moment-buffer dtype rather than the parameter dtype
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1593">GH-1593</a>).</p></li>
+<li><p>Fix CPU kernel compilation failures by registering the <code class="docutils literal notranslate"><span class="pre">exp2</span></code> and <code class="docutils literal notranslate"><span class="pre">ldexp</span></code> math symbols that LLVM
+may emit when simplifying power-of-two <code class="docutils literal notranslate"><span class="pre">pow</span></code> calls
+(<a class="reference external" href="https://github.com/NVIDIA/warp/issues/1562">GH-1562</a>).</p></li>
 </ul>
 </section>
 <section id="documentation">
