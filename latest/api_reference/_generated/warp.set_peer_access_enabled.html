@@ -509,7 +509,7 @@
 <h1>warp.set_peer_access_enabled<a class="headerlink" href="#warp-set-peer-access-enabled" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="warp.set_peer_access_enabled">
-<span class="sig-prename descclassname"><span class="pre">warp.</span></span><span class="sig-name descname"><span class="pre">set_peer_access_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NVIDIA/warp/blob/main/warp/_src/context.py#L9554-L9587"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warp.set_peer_access_enabled" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">warp.</span></span><span class="sig-name descname"><span class="pre">set_peer_access_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NVIDIA/warp/blob/main/warp/_src/context.py#L9569-L9602"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warp.set_peer_access_enabled" title="Link to this definition">#</a></dt>
 <dd><p>Enable or disable direct access from <code class="docutils literal notranslate"><span class="pre">peer_device</span></code> to the memory of <code class="docutils literal notranslate"><span class="pre">target_device</span></code>.</p>
 <p>Enabling peer access can improve the speed of peer-to-peer memory transfers, but can have
 a negative impact on memory consumption and allocation performance.</p>
@@ -518,8 +518,8 @@ CUDA pooled allocators, use <a class="reference internal" href="warp.set_mempool
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>target_device</strong> (<a class="reference internal" href="warp.Device.html#warp.Device" title="warp._src.context.Device"><em>Device</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
-<li><p><strong>peer_device</strong> (<a class="reference internal" href="warp.Device.html#warp.Device" title="warp._src.context.Device"><em>Device</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>target_device</strong> (<a class="reference internal" href="warp.Device.html#warp.Device" title="warp._src.context.Device"><em>Device</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>peer_device</strong> (<a class="reference internal" href="warp.Device.html#warp.Device" title="warp._src.context.Device"><em>Device</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
 <li><p><strong>enable</strong> (<a class="reference internal" href="warp.bool.html#warp.bool" title="warp.bool"><em>bool</em></a>)</p></li>
 </ul>
 </dd>
